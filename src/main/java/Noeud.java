@@ -68,6 +68,10 @@ public class Noeud implements IArbre {
 
     @Override
     public boolean estTrie() {
-        return false;
+        for(IArbre noeud : feuilles) {
+            if(noeud.estTrie() == false)
+                return false;
+        }
+        return true;
     }
 }

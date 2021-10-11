@@ -58,7 +58,12 @@ public class Noeud implements IArbre {
 
     @Override
     public Integer max() {
-        return 0;
+        int max = 0;
+        for(IArbre noeud : feuilles) {
+            if(noeud.min() > max)
+                max = noeud.max();
+        }
+        return max;
     }
 
     @Override

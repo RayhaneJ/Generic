@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -11,34 +12,53 @@ public class Noeud implements IArbre {
 
     @Override
     public int taille() {
-        return feuilles.size();
+        int rtr = 0;
+        for(final IArbre a : feuilles){
+            rtr += a.taille();
+        }
+        return rtr;
     }
 
     @Override
     public boolean contient(Integer val) {
-        return feuilles.contains(val);
+        for(final IArbre a : feuilles){
+            if(a.contient(val))
+                return true;
+        }
+        return false;
     }
 
     @Override
     public Set<Integer> valeurs() {
-        ArrayList<Integer> valeurs = new ArrayList<Integer>();
-        foreach(Noeud var: ArrayList)
-        return feuilles;
+        Set<Integer> valeurs = new HashSet<Integer>();
+        for(IArbre noeud : feuilles) {
+            valeurs.addAll(noeud.valeurs());
+        }
+        return valeurs;
     }
 
     @Override
     public Integer somme() {
-        return null;
+        int somme = 0;
+        for(IArbre noeud : feuilles) {
+            somme = somme + noeud.somme();
+        }
+        return somme;
     }
 
     @Override
     public Integer min() {
-        return null;
+        int min = 0;
+        for(IArbre noeud : feuilles) {
+            if(noeud.min() < min)
+                min = noeud.min();
+        }
+        return min;
     }
 
     @Override
     public Integer max() {
-        return null;
+        return 0;
     }
 
     @Override

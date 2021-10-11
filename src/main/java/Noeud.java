@@ -68,10 +68,15 @@ public class Noeud implements IArbre {
 
     @Override
     public boolean estTrie() {
-        for(IArbre noeud : feuilles) {
-            if(noeud.estTrie() == false)
-                return false;
+        int i = 0;
+        IArbre noeud1 = feuilles.get(i);
+        IArbre noeud2 = feuilles.get(i+1);
+        if(noeud1.max() < noeud2.min())
+            return false;
+        else {
+            noeud1 = noeud2;
+            i = i +1;
+            noeud2 = feuilles.get(i+1);
         }
-        return true;
     }
 }
